@@ -7,19 +7,25 @@ import DisplayCoin from "./DisplayCoin";
 
 const App = () => {
   const [coin, setCoin] = useState([]);
+  //const [coinImage, setCoinImage] = useState({});
   const [currentCoin, setCurrentCoin] = useState({});
   const onInputChange = (event) => {
     event.preventDefault();
     setCoin(event.target.value);
   };
   const fetchCrypto = () => {
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`;
+    const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false
+    `;
+    //const imageUrl = `https://api.coinicons.net/icon/:/:128x128`;
     axios.get(url).then((response) => {
       setCurrentCoin(response.data);
-
       console.log(coin);
-      console.log(currentCoin)
+      console.log(response.data.image);
     });
+    // axios.get(imageUrl).then((response) => {
+    //   setCoinImage(response.data);
+    //   console.log(coinImage)
+    // });
   };
   useEffect(() => {}, []);
 
@@ -42,7 +48,9 @@ const App = () => {
           </button>
         </div>
       </div>
-      <DisplayCoin />
+      <DisplayCoin currentCoin={currentCoin}>
+        <DisplayCoin />
+      </DisplayCoin>
     </div>
   );
 };
