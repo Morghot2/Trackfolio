@@ -7,7 +7,7 @@ import DisplayCoin from "./DisplayCoin";
 
 const App = () => {
   const [coin, setCoin] = useState([]);
-  //const [coinImage, setCoinImage] = useState({});
+  const [coinsList, setCoinsList] = useState([])
   const [currentCoin, setCurrentCoin] = useState({});
   const onInputChange = (event) => {
     event.preventDefault();
@@ -19,8 +19,10 @@ const App = () => {
     //const imageUrl = `https://api.coinicons.net/icon/:/:128x128`;
     axios.get(url).then((response) => {
       setCurrentCoin(response.data);
+      setCoinsList(...coinsList, response.data)
       console.log(coin);
-      console.log(response.data.image);
+      console.log(response.data);
+      console.log(coinsList)
     });
     // axios.get(imageUrl).then((response) => {
     //   setCoinImage(response.data);
