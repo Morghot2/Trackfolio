@@ -13,23 +13,22 @@ const App = () => {
     event.preventDefault();
     setCoin(event.target.value);
   };
-  useEffect(() => {
-    const fetchCrypto = () => {
-      const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false`;
-      //const imageUrl = `https://api.coinicons.net/icon/:/:128x128`;
-      axios.get(url).then((response) => {
-        setCurrentCoin(response.data);
-        setCoinsList((coinList) => [...coinList, response.data]);
-        console.log(coin);
-        console.log(coinsList);
-        console.log(currentCoin);
-      });
-      // axios.get(imageUrl).then((response) => {
-      //   setCoinImage(response.data);
-      //   console.log(coinImage)
-      // });
-    };
-  }, [coinsList, coin, currentCoin]);
+  useEffect(() => {}, []);
+  const fetchCrypto = () => {
+    const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
+    //const imageUrl = `https://api.coinicons.net/icon/:/:128x128`;
+    axios.get(url).then((response) => {
+      setCurrentCoin(response.data);
+      setCoinsList((coinList) => [...coinList, response.data]);
+      console.log(coin);
+      console.log(coinsList);
+      console.log(currentCoin);
+    });
+    // axios.get(imageUrl).then((response) => {
+    //   setCoinImage(response.data);
+    //   console.log(coinImage)
+    // });
+  };
 
   return (
     <div>
@@ -50,9 +49,7 @@ const App = () => {
           </button>
         </div>
       </div>
-      <DisplayCoin currentCoin={currentCoin} coinsList={coinsList}>
-        <DisplayCoin />
-      </DisplayCoin>
+      <DisplayCoin currentCoin={currentCoin} coinsList={coinsList} />
     </div>
   );
 };

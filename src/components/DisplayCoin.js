@@ -1,25 +1,30 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
-
-const DisplayCoin = ({ currentCoin }, { coinsList }) => {
+const DisplayCoin = ({ coinsList }) => {
+  
+  //console.log(coinsList)
   //useEffect(() => {}, [coinsList])
   if (!coinsList) {
     return <div>There is no coin</div>;
   } else {
-    coinsList.map((coin) => {
+    return coinsList.map((coin) => {
+      
       return (
-        <div className="ui equal width grid">
+        <div className="ui equal width grid" key={coin.name}>
           <div className="column">
             <div className="ui segment">
-              <img src={`${coin.image}`} alt="bitcoin"></img>
+              <img src={`${coin.image}`} alt="symbol"></img>
               {coin.name}
             </div>
           </div>
-          <div className="eight wide column">
-            <div className="ui segment">2</div>
+          <div className="column">
+            <div className="ui segment">{coin.market_data.current_price.usd}</div>
           </div>
           <div className="column">
-            <div className="ui segment">3</div>
+            <div className="ui segment"><input type="number" name="amount" /></div>
+          </div>
+          <div className="column">
+            <div className="ui segment">asdasd</div>
           </div>
         </div>
       );
