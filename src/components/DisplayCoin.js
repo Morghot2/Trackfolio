@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const DisplayCoin = ({ coinsList }) => {
-  const [coinValue, setCoinValue] = useState(0)
-  const onValueEnter = (event) => {
-    event.preventDefault();
-    setCoinValue(event.target.value);
-  };
+  // const [coinValue, setCoinValue] = useState(0)
+  // const onValueEnter = (event) => {
+  //   event.preventDefault();
+  //   setCoinValue(event.target.value);
+  // };
   
   
   //console.log(coinsList)
@@ -14,10 +14,9 @@ const DisplayCoin = ({ coinsList }) => {
     return <div>There is no coin</div>;
   } else {
     return coinsList.map((coin) => {
-      
-      
+      // const inputVariable = document.getElementById('coin').value
+      // console.log(inputVariable)
       return (
-        
         <div className="ui equal width grid" key={coin.name}>
           <div className="column">
             <div className="ui segment">
@@ -29,16 +28,23 @@ const DisplayCoin = ({ coinsList }) => {
             <div className="ui segment">{coin.market_data.current_price.usd}</div>
           </div>
           <div className="column">
-            <div className="ui segment"><input type="number" name="amount" onChange={onValueEnter} value={coinValue}/></div>
+            <div className="ui segment"><input type="number" name="amount" /*onChange={onValueEnter} value={coinValue}*/ id={coin.name}/></div>
           </div>
           <div className="column">
-            <div className="ui segment">{coin.market_data.current_price.usd * coinValue}</div>
+            <div className="ui segment">{document.getElementById(`${coin.name}`) ? document.getElementById(`${coin.name}`).value * coin.market_data.current_price.usd : 0}</div>
           </div>
         </div>
       );
     });
   }
+
 };
 
 export default DisplayCoin;
 //return coinsList.map((coin) => {})
+// () => {
+//   const coin = document.getElementById('div').value
+//   return coin * coin.market_data.current_price.usd
+// }
+  // const inputVariable = document.getElementById('coin').value
+  // console.log(inputVariable)
