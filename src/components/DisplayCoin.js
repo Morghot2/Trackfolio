@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const DisplayCoin = ({ coinsList }) => {
-  // const [coinValue, setCoinValue] = useState(0)
-  // const onValueEnter = (event) => {
-  //   event.preventDefault();
-  //   setCoinValue(event.target.value);
-  // };
-  
-  
+  const [coins, setCoins] = useState({});
+  const onCoinEnter = (event) => {
+    event.preventDefault();
+    setCoins(event.target.value);
+  };
+
   //console.log(coinsList)
   //useEffect(() => {}, [coinsList])
   if (!coinsList) {
@@ -25,19 +24,32 @@ const DisplayCoin = ({ coinsList }) => {
             </div>
           </div>
           <div className="column">
-            <div className="ui segment">{coin.market_data.current_price.usd}</div>
+            <div className="ui segment">
+              {coin.market_data.current_price.usd}
+            </div>
           </div>
           <div className="column">
-            <div className="ui segment"><input type="number" name="amount" /*onChange={onValueEnter} value={coinValue}*/ id={coin.name}/></div>
+            <div className="ui segment">
+              <input
+                type="number"
+                name="amount"
+                onChange={onCoinEnter}
+                /*value={coinValue}*/ id={coin.name}
+              />
+            </div>
           </div>
           <div className="column">
-            <div className="ui segment">{document.getElementById(`${coin.name}`) ? document.getElementById(`${coin.name}`).value * coin.market_data.current_price.usd : 0}</div>
+            <div className="ui segment">
+              {document.getElementById(`${coin.name}`)
+                ? document.getElementById(`${coin.name}`).value *
+                  coin.market_data.current_price.usd
+                : 0}
+            </div>
           </div>
         </div>
       );
     });
   }
-
 };
 
 export default DisplayCoin;
@@ -46,5 +58,5 @@ export default DisplayCoin;
 //   const coin = document.getElementById('div').value
 //   return coin * coin.market_data.current_price.usd
 // }
-  // const inputVariable = document.getElementById('coin').value
-  // console.log(inputVariable)
+// const inputVariable = document.getElementById('coin').value
+// console.log(inputVariable)

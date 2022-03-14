@@ -1,6 +1,5 @@
 import React from "react";
 import CryptoSearch from "./CryptoSearch";
-import PostCrypto from "./PostCrypto";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
