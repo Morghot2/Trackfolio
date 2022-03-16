@@ -10,11 +10,29 @@ const App = () => {
     event.preventDefault();
     setCoin(event.target.value);
   };
+  const displaySum = () => {
+    const sum = document.getElementsByName("amount");
+    let displayedValue = 0;
+    for (let element of sum) {
+      displayedValue += parseInt(element.value);
+    }
+  };
+
   const fetchCrypto = () => {
+    const btn = document.getElementById("fetchButton");
+    const disabling = () => {
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.disabled = false;
+        console.log("Button Activated");
+      }, 300);
+    };
+
     const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
     if (coinsList.some((element) => element.id === coin)) {
       return null;
     } else {
+      disabling();
       axios.get(url).then((response) => {
         setCoinsList((coinList) => [...coinList, response.data]);
       });
@@ -41,15 +59,20 @@ const App = () => {
           />
           <button
             className="ui button"
+            id="fetchButton"
             type="submit"
-            onClick={() => fetchCrypto()}
+            onClick={() => (coin !== "" ? fetchCrypto() : null)}
+            
           >
             Search
           </button>
         </div>
       </div>
       <DisplayCoin coinsList={coinsList} removeCrypto={removeCrypto} />
-      <div>Your total assets value: </div>
+      <div>
+        Your total assets value:
+        {displaySum()}
+      </div>
     </div>
   );
 };

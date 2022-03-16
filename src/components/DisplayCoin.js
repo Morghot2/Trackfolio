@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+
 const DisplayCoin = ({ coinsList, removeCrypto }) => {
   const [coins, setCoins] = useState({});
   const onCoinEnter = (event) => {
@@ -11,6 +12,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
       <div className="ui equal width grid" key={coin.name}>
         <div className="column">
           <div className="ui segment">
+            {coinsList.indexOf(coin) + 1}.
             <img src={`${coin.image.thumb}`} alt="symbol"></img>
             {coin.name}
           </div>
