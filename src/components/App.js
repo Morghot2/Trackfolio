@@ -1,5 +1,4 @@
 import React from "react";
-import CryptoSearch from "./CryptoSearch";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
@@ -7,26 +6,27 @@ import DisplayCoin from "./DisplayCoin";
 const App = () => {
   const [coin, setCoin] = useState("");
   const [coinsList, setCoinsList] = useState([]);
-  const [currentCoin, setCurrentCoin] = useState({});
   const onInputChange = (event) => {
     event.preventDefault();
     setCoin(event.target.value);
   };
-  useEffect(() => {}, []);
   const fetchCrypto = () => {
     const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
-    //const imageUrl = `https://api.coinicons.net/icon/:/:128x128`;
-    axios.get(url).then((response) => {
-      setCurrentCoin(response.data);
-      setCoinsList((coinList) => [...coinList, response.data]);
-      console.log(coin);
-      console.log(coinsList);
-      console.log(currentCoin);
-    });
-    // axios.get(imageUrl).then((response) => {
-    //   setCoinImage(response.data);
-    //   console.log(coinImage)
-    // });
+    if (coinsList.some((element) => element.id === coin)) {
+      return null;
+    } else {
+      axios.get(url).then((response) => {
+        setCoinsList((coinList) => [...coinList, response.data]);
+      });
+    }
+
+    console.log(coin);
+  };
+  const removeCrypto = (coin) => {
+    const coinPosition = coinsList.indexOf(coin);
+    setCoinsList(
+      coinsList.filter((element) => coinPosition !== coinsList.indexOf(element))
+    );
   };
 
   return (
@@ -48,17 +48,10 @@ const App = () => {
           </button>
         </div>
       </div>
-      <DisplayCoin currentCoin={currentCoin} coinsList={coinsList} />
+      <DisplayCoin coinsList={coinsList} removeCrypto={removeCrypto} />
+      <div>Your total assets value: </div>
     </div>
   );
 };
 
 export default App;
-// <button type='submit' onClick={() => fetchCrypto()}></button>
-
-/* <form className="ui form" onSubmit={() => fetchCrypto()}>
-  <div className="field">
-    <label>Add your asset</label>
-    <input onChange={onInputChange} value={coin} type="text"></input>
-  </div>
-</form>; */
