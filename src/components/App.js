@@ -53,6 +53,16 @@ const App = () => {
     );
   };
 
+  // const valueDivs = document.getElementsByClassName("ui segment value");
+  // const calculateTotal = (valueDivs) => {
+  //   for (let elementDiv of valueDivs) {
+  //     console.log("dupa");
+  //   }
+  // };
+  // calculateTotal();
+
+  // console.log(valueDivs);
+
   return (
     <div>
       <div className="search-bar ui segment">
@@ -68,7 +78,6 @@ const App = () => {
             id="fetchButton"
             type="submit"
             onClick={() => (coin !== "" ? fetchCrypto() : null)}
-            
           >
             Search
           </button>
@@ -82,8 +91,5 @@ const App = () => {
     </div>
   );
 };
-const fasfa = 2 + 2
 
 export default App;
-
-//asdjkhasjkdhka
