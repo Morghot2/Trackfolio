@@ -10,13 +10,19 @@ const App = () => {
     event.preventDefault();
     setCoin(event.target.value);
   };
-  const displaySum = () => {
-    const sum = document.getElementsByName("amount");
-    let displayedValue = 0;
-    for (let element of sum) {
-      displayedValue += parseInt(element.value);
-    }
-  };
+  // const displaySum = () => {
+  //   const sum = document.getElementsByName("amount");
+  //   let displayedValue = 0;
+  //   for (let element of sum) {
+  //     displayedValue += parseInt(element.value);
+  //   }
+  // };
+  // const totalCalc = (coinsList) => {
+  //   const initialValue = 0
+  //   for (const crypto of coinsList) {
+  //     document.getElementById(`${coin.name}`).value * coin.market_data.current_price.usd
+  //   }
+  // }
 
   const fetchCrypto = () => {
     const btn = document.getElementById("fetchButton");
@@ -71,7 +77,7 @@ const App = () => {
       <DisplayCoin coinsList={coinsList} removeCrypto={removeCrypto} />
       <div>
         Your total assets value:
-        {displaySum()}
+        {/*displaySum()*/}
       </div>
     </div>
   );
