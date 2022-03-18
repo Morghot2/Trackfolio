@@ -12,7 +12,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
   return (
     coinsList.map((coin) => {
       return (
-        <div className="ui equal width grid" key={coin.name}>
+        <div className="coin-container" key={coin.name}>
           <div className="column">
             <div className="ui segment">
               {coinsList.indexOf(coin) + 1}.
