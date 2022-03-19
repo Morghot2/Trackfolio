@@ -1,3 +1,28 @@
 body {
-    background-color: #1a1a1c !important;
+    color: white;
+
+    background-color: #17171a;
+}
+.search-bar {
+    display: flex;
+    justify-content: center;
+}
+.ui-button {
+    
+}
+.coin-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+.titles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.segment {
+    text-align: right;
 }

@@ -54,16 +54,17 @@ const App = () => {
 
   return (
     <div>
-      <div className="search-bar ui segment">
+      <div className="search-bar">
         <div className="ui action input">
           <input
+            className="coin-input"
             type="text"
             placeholder="Search..."
             onChange={onInputChange}
             value={coin}
           />
           <button
-            className="ui button"
+            className="ui-button"
             id="fetchButton"
             type="submit"
             onClick={() => (coin !== "" ? fetchCrypto() : null)}
@@ -71,6 +72,15 @@ const App = () => {
             Search
           </button>
         </div>
+      </div>
+      <div className="titles">
+        <div className="property"></div>
+        <div className="property">Name</div>
+        <div className="property">Price</div>
+        <div className="property">Amount</div>
+        <div className="property">Asset Value</div>
+        <div className="property"></div>
+
       </div>
       <DisplayCoin coinsList={coinsList} removeCrypto={removeCrypto} calculateTotal={calculateTotal}/>
       <div>
