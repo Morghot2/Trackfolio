@@ -24,5 +24,12 @@ body {
     
 }
 .segment {
-    text-align: right;
+    flex: 1 1 0px; 
+    width: 0px;
+}
+.value-segment {
+    flex: 1 1 0px; 
+    width: 0px;
+    text-align: rgiht;
+
 }
