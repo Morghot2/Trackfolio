@@ -2,9 +2,8 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
-import '../style.css'
-
-
+import "../style.css";
+import search from "../search.png";
 const App = () => {
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
@@ -14,15 +13,14 @@ const App = () => {
     setCoin(event.target.value);
   };
   const calculateTotal = () => {
-    let start = 0
+    let start = 0;
     for (let i = 0; i < refs.current.length; i++) {
-      start += parseInt(refs.current[i].innerHTML) 
-      console.log(start)
-      console.log(typeof parseInt(refs.current[i].innerHTML))
-      console.log(refs)
+      start += parseInt(refs.current[i].innerHTML);
+      console.log(start);
+      console.log(typeof parseInt(refs.current[i].innerHTML));
+      console.log(refs);
     }
-  }
-  
+  };
 
   const fetchCrypto = () => {
     const btn = document.getElementById("fetchButton");
@@ -41,6 +39,7 @@ const App = () => {
       axios.get(url).then((response) => {
         setCoinsList((coinList) => [...coinList, response.data]);
       });
+      
     }
 
     console.log(coin);
@@ -53,24 +52,27 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="coin-app">
       <div className="search-bar">
-        <div className="ui action input">
-          <input
-            className="coin-input"
-            type="text"
-            placeholder="Search..."
-            onChange={onInputChange}
-            value={coin}
-          />
-          <button
-            className="ui-button"
-            id="fetchButton"
-            type="submit"
-            onClick={() => (coin !== "" ? fetchCrypto() : null)}
-          >
-            Search
-          </button>
+        <div className="form-wrapper">
+          <h1 className="coin-text">Search a currency</h1>
+          <div className="form">
+            <input
+              className="search-field"
+              type="text"
+              placeholder="Search..."
+              onChange={onInputChange}
+              value={coin}
+            />
+            <button
+              className="search-button"
+              id="fetchButton"
+              type="submit"
+              onClick={() => (coin !== "" ? fetchCrypto() : null)}
+            >
+              <img src={search} alt="search" className=""></img>
+            </button>
+          </div>
         </div>
       </div>
       <div className="titles">
@@ -80,9 +82,12 @@ const App = () => {
         <div className="property">Amount</div>
         <div className="property">Asset Value</div>
         <div className="property"></div>
-
       </div>
-      <DisplayCoin coinsList={coinsList} removeCrypto={removeCrypto} calculateTotal={calculateTotal}/>
+      <DisplayCoin
+        coinsList={coinsList}
+        removeCrypto={removeCrypto}
+        calculateTotal={calculateTotal}
+      />
       <div>
         Your total assets value:
         <button onClick={calculateTotal()}></button>
