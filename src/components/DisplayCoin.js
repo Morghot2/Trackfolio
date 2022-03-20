@@ -13,14 +13,14 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
       <div>
         {" "}
         <div className="coin-container" key={coin.name}>
-          <div className="segment">{coinsList.indexOf(coin) + 1}.</div>
-          <div className="segment">
+          <div className="segment">{coinsList.indexOf(coin) + 1}.
+          
             {" "}
             <img src={`${coin.image.thumb}`} alt="symbol"></img>
             {coin.name}
           </div>
 
-          <div className="segment">{coin.market_data.current_price.usd}</div>
+          <div className="value-segment">{coin.market_data.current_price.usd}</div>
 
           <div className="segment">
             <input
@@ -32,7 +32,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
           </div>
 
           <div
-            className="segment"
+            className="value-segment"
             ref={(element) => {
               refs.current[coinsList.indexOf(coin)] = element;
             }}
