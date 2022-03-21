@@ -37,7 +37,6 @@ body {
   color: #e2e2e2;
 }
 
-
 .search-field {
   color: white;
   background-color: transparent;
@@ -47,7 +46,7 @@ body {
   outline: none;
 }
 .search-field::placeholder {
-    color: white;
+  color: white;
 }
 .search-button {
   background: transparent;
@@ -74,6 +73,10 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #40424e;
+  margin-top: 5px;
+  padding-bottom: 5px;
 }
 .coin-title-container {
   display: flex;
@@ -84,6 +87,9 @@ body {
 
 .segment {
   width: 15%;
+  display: flex;
+  align-items: center;
+
 }
 .price-segment {
   width: 20%;
@@ -104,6 +110,20 @@ body {
   display: flex;
   justify-content: flex-end;
   width: 10%;
+}
+.amount-input {
+  background-color: #323546;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  text-align: right;
+}
+.amount-input:focus {
+    background-color: #323546;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    text-align: right;
 }
 
 /* .titles {
