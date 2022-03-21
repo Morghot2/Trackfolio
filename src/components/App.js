@@ -75,12 +75,12 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className="coin-container">
+      <div className="coin-title-container">
         <div className="segment">Name</div>
         <div className="price-segment">Price</div>
         <div className="input-segment">Amount</div>
         <div className="value-segment">Asset Value</div>
-        <div className="segment delete-button"></div>
+        <div className="segment-delete-button"></div>
       </div>
       <DisplayCoin
         coinsList={coinsList}
