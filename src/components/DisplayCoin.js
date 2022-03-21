@@ -10,9 +10,9 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
 
   return coinsList.map((coin) => {
     return (
-      <div>
+      <div key={coin.name}>
         {" "}
-        <div className="coin-container" key={coin.name}>
+        <div className="coin-container" >
           <div className="segment">{coinsList.indexOf(coin) + 1}.
           
             {" "}
@@ -20,9 +20,9 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
             {coin.name}
           </div>
 
-          <div className="value-segment">{coin.market_data.current_price.usd}</div>
+          <div className="price-segment">{coin.market_data.current_price.usd}</div>
 
-          <div className="segment">
+          <div className="input-segment">
             <input
               type="number"
               name="amount"
@@ -42,7 +42,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
                 coin.market_data.current_price.usd).toFixed(2)
               : 0}
           </div>
-          <div className="segment">
+          <div className="segment delete-button">
             {" "}
             <button
               onClick={() => {

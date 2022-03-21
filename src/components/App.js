@@ -4,6 +4,7 @@ import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
 import "../style.css";
 import search from "../search.png";
+import { debounce } from "lodash";
 const App = () => {
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
@@ -21,28 +22,34 @@ const App = () => {
       console.log(refs);
     }
   };
+  const btn = document.getElementById("fetchButton");
+  const disabling = () => {
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.disabled = false;
+      console.log("Button Activated");
+    }, 300);
+  };
+  const btnImg = document.getElementById("button-img");
+  const disablingImg = () => {
+    btnImg.disabled = true;
+    setTimeout(() => {
+      btnImg.disabled = false;
+      console.log("Image Activated");
+    }, 300);
+  };
 
   const fetchCrypto = () => {
-    const btn = document.getElementById("fetchButton");
-    const disabling = () => {
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.disabled = false;
-        console.log("Button Activated");
-      }, 300);
-    };
-    const url = `https://api.coingecko.com/api/v3/coins/${coin}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
+
+    const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
+    disabling();
     if (coinsList.some((element) => element.id === coin)) {
       return null;
     } else {
-      disabling();
       axios.get(url).then((response) => {
         setCoinsList((coinList) => [...coinList, response.data]);
       });
-      
     }
-
-    console.log(coin);
   };
   const removeCrypto = (coin) => {
     const coinPosition = coinsList.indexOf(coin);
@@ -50,12 +57,13 @@ const App = () => {
       coinsList.filter((element) => coinPosition !== coinsList.indexOf(element))
     );
   };
+  const onImageClick = () => {console.log('Clicked image')}
 
   return (
     <div className="coin-app">
       <div className="search-bar">
         <div className="form-wrapper">
-          <h1 className="coin-text">Search a currency</h1>
+          <h1 className="coin-text">Search for currency</h1>
           <div className="form">
             <input
               className="search-field"
@@ -70,7 +78,7 @@ const App = () => {
               type="submit"
               onClick={() => (coin !== "" ? fetchCrypto() : null)}
             >
-              <img src={search} alt="search" className=""></img>
+              <img src={search} alt="search" className="button-img" onClick={debounce(onImageClick, 300)}></img>
             </button>
           </div>
         </div>
