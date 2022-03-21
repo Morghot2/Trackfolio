@@ -6,7 +6,6 @@ import "../style.css";
 import search from "../search.png";
 import { debounce } from "lodash";
 
-
 const App = () => {
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
