@@ -1,70 +1,72 @@
+html {
+  min-height: 100%;
+}
 body {
-    color: white;
-
-    background-color: #17171a;
+  background: linear-gradient(rgb(34, 37, 49) 0%, rgba(23, 23, 26) 413px);
+  color: white;
 }
 .search-bar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .form-wrapper {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
-    display: flex;
-    flex-direction: row;
-    width: 300px;
-    height: 50px;
-    border-radius: 25px;
-    border: none;
-    margin-bottom: 50px;
-    background-image: linear-gradient(
-        -225deg,
-        #ac32e4 0%,
-        #7918f2 48%,
-        #4801ff 100%
-    );
-    color: #e2e2e2
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+  margin-bottom: 50px;
+  background-image: linear-gradient(
+    -225deg,
+    #ac32e4 0%,
+    #7918f2 48%,
+    #4801ff 100%
+  );
+  color: #e2e2e2;
 }
 
 .search-field {
-    background-color: transparent;
-    width: 100%;
-    padding: 10px 35px 10px 15px;
-    border: none;
-    
-    outline: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: none;
+  outline: none;
 }
-  
+
 .search-button {
-    background: transparent;
-    border: none;
-    outline: none;
-    margin-left: -33px;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
 }
-  
+
 .search-button img {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
 }
 .coin-text {
-    text-align: center;
+  text-align: center;
 }
 
 .coin-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+
 /* .titles {
     display: flex;
     flex-direction: row;
