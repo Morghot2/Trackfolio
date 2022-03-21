@@ -4,6 +4,7 @@ html {
 body {
   background: linear-gradient(rgb(34, 37, 49) 0%, rgba(23, 23, 26) 413px);
   color: white;
+  font-size: 15px;
 }
 .search-bar {
   display: flex;
@@ -36,14 +37,18 @@ body {
   color: #e2e2e2;
 }
 
+
 .search-field {
+  color: white;
   background-color: transparent;
   width: 100%;
   padding: 10px 35px 10px 15px;
   border: none;
   outline: none;
 }
-
+.search-field::placeholder {
+    color: white;
+}
 .search-button {
   background: transparent;
   border: none;
@@ -60,12 +65,46 @@ body {
   text-align: center;
 }
 
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .coin-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+.coin-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
 
+.segment {
+  width: 15%;
+}
+.price-segment {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.input-segment {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+.value-segment {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.segment-delete-button {
+  display: flex;
+  justify-content: flex-end;
+  width: 10%;
+}
 
 /* .titles {
     display: flex;
