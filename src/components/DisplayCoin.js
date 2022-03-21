@@ -12,18 +12,21 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
     return (
       <div key={coin.name}>
         {" "}
-        <div className="coin-container" >
-          <div className="segment">{coinsList.indexOf(coin) + 1}.
-          
-            {" "}
+        <div className="coin-container">
+          <div className="segment">
+            {coinsList.indexOf(coin) + 1}.
+            
             <img src={`${coin.image.thumb}`} alt="symbol"></img>
             {coin.name}
           </div>
 
-          <div className="price-segment">{coin.market_data.current_price.usd}</div>
+          <div className="price-segment">
+            {coin.market_data.current_price.usd}
+          </div>
 
           <div className="input-segment">
             <input
+            className="amount-input"
               type="number"
               name="amount"
               onChange={onCoinEnter}
@@ -38,8 +41,10 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
             }}
           >
             {document.getElementById(`${coin.name}`)
-              ? (document.getElementById(`${coin.name}`).value *
-                coin.market_data.current_price.usd).toFixed(2)
+              ? (
+                  document.getElementById(`${coin.name}`).value *
+                  coin.market_data.current_price.usd
+                ).toFixed(2)
               : 0}
           </div>
           <div className="segment-delete-button">
@@ -54,7 +59,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
             </button>
           </div>
         </div>
-        <hr></hr>
+        {/* <hr></hr> */}
       </div>
     );
   });
