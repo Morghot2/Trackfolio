@@ -1,10 +1,12 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
 import "../style.css";
 import search from "../search.png";
 import { debounce } from "lodash";
+
+
 const App = () => {
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
@@ -28,19 +30,10 @@ const App = () => {
     setTimeout(() => {
       btn.disabled = false;
       console.log("Button Activated");
-    }, 300);
-  };
-  const btnImg = document.getElementById("button-img");
-  const disablingImg = () => {
-    btnImg.disabled = true;
-    setTimeout(() => {
-      btnImg.disabled = false;
-      console.log("Image Activated");
-    }, 300);
+    }, 1000);
   };
 
   const fetchCrypto = () => {
-
     const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
     disabling();
     if (coinsList.some((element) => element.id === coin)) {
@@ -57,7 +50,6 @@ const App = () => {
       coinsList.filter((element) => coinPosition !== coinsList.indexOf(element))
     );
   };
-  const onImageClick = () => {console.log('Clicked image')}
 
   return (
     <div className="coin-app">
@@ -78,14 +70,13 @@ const App = () => {
               type="submit"
               onClick={() => (coin !== "" ? fetchCrypto() : null)}
             >
-              <img src={search} alt="search" className="button-img" onClick={debounce(onImageClick, 300)}></img>
+              <img src={search} alt="search" className="button-img"></img>
             </button>
           </div>
         </div>
       </div>
       <div className="coin-container">
-        
-        <div className="segmen">Name</div>
+        <div className="segment">Name</div>
         <div className="price-segment">Price</div>
         <div className="input-segment">Amount</div>
         <div className="value-segment">Asset Value</div>
