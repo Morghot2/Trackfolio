@@ -42,7 +42,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
                 coin.market_data.current_price.usd).toFixed(2)
               : 0}
           </div>
-          <div className="segment delete-button">
+          <div className="segment-delete-button">
             {" "}
             <button
               onClick={() => {
