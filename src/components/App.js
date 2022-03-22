@@ -4,12 +4,12 @@ import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
 import "../style.css";
 import search from "../search.png";
-import { debounce } from "lodash";
 
 const App = () => {
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
   const [coinsList, setCoinsList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const onInputChange = (event) => {
     event.preventDefault();
     setCoin(event.target.value);
@@ -23,24 +23,20 @@ const App = () => {
       console.log(refs);
     }
   };
-  const btn = document.getElementById("fetchButton");
-  const disabling = () => {
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.disabled = false;
-      console.log("Button Activated");
-    }, 1000);
-  };
-
-  const fetchCrypto = () => {
+  const fetchCrypto = async () => {
     const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
-    disabling();
-    if (coinsList.some((element) => element.id === coin)) {
-      return null;
-    } else {
-      axios.get(url).then((response) => {
-        setCoinsList((coinList) => [...coinList, response.data]);
-      });
+    try {
+      setLoading(true);
+      if (coinsList.some((element) => element.id === coin)) {
+        return;
+      } else {
+        const result = await axios.get(url);
+        setCoinsList((coinList) => [...coinList, result.data]);
+      }
+    } catch (e) {
+      alert("Provide valid coin name");
+    } finally {
+      setLoading(false);
     }
   };
   const removeCrypto = (coin) => {
@@ -68,6 +64,7 @@ const App = () => {
               id="fetchButton"
               type="submit"
               onClick={() => (coin !== "" ? fetchCrypto() : null)}
+              disabled={loading}
             >
               <img src={search} alt="search" className="button-img"></img>
             </button>
