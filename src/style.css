@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Roboto:wght@300&display=swap');
+
+
 html {
   min-height: 100%;
 }
 body {
+  font-family: 'Lato', sans-serif;
+
   background: linear-gradient(rgb(34, 37, 49) 0%, rgba(23, 23, 26) 413px);
   color: white;
   font-size: 15px;
@@ -118,14 +123,40 @@ body {
   border: none;
   text-align: right;
 }
-.amount-input:focus {
+.amount-input:focus:active:hover {
     background-color: #323546;
     color: white;
     border-radius: 5px;
     border: none;
     text-align: right;
 }
+.amount-input:-webkit-autofill {
+  background-color: #323546;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  text-align: right;
+}
 
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  
+  background-color: #323546;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;  
+}
+.delete-img {
+  height: 10px;
+  width: 10px;
+  background: transparent;
+}
 /* .titles {
     display: flex;
     flex-direction: row;
