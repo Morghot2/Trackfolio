@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import close from "../close.png"
 
 
-const DisplayCoin = ({ coinsList, removeCrypto }) => {
+const DisplayCoin = ({ coinsList, removeCrypto,calculateTotal }) => {
   const [coins, setCoins] = useState({});
   const refs = useRef([]);
   const onCoinEnter = (event) => {
@@ -13,12 +13,12 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
   return coinsList.map((coin) => {
     return (
       <div key={coin.name}>
-        {" "}
+        
         <div className="coin-container">
           <div className="segment">
             {coinsList.indexOf(coin) + 1}.
             
-            <img src={`${coin.image.thumb}`} alt="symbol"></img>
+            <img src={`${coin.image.thumb}`} alt="symbol" className="coin-icon"></img>
             {coin.name}
           </div>
 
