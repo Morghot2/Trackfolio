@@ -84,6 +84,7 @@ const App = () => {
         coinsList={coinsList}
         removeCrypto={removeCrypto}
         calculateTotal={calculateTotal}
+        refs={refs}
       />
       <div>
         Your total assets value:
