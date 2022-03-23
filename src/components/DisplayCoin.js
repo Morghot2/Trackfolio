@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import close from "../close.png"
+
 
 const DisplayCoin = ({ coinsList, removeCrypto }) => {
   const [coins, setCoins] = useState({});
@@ -29,6 +31,7 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
             className="amount-input"
               type="number"
               name="amount"
+              max="7"
               onChange={onCoinEnter}
               /*value={coinValue}*/ id={coin.name}
             />
@@ -55,11 +58,17 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
               }}
               className="delete-button"
             >
-              Delete
+              <img src={close} alt="Delete" className="delete-img"/>
+              
+              
+              
             </button>
+            
+            
           </div>
         </div>
-        {/* <hr></hr> */}
+        
+
       </div>
     );
   });

@@ -47,7 +47,9 @@ const App = () => {
   };
 
   return (
+    
     <div className="coin-app">
+      
       <div className="search-bar">
         <div className="form-wrapper">
           <h1 className="coin-text">Search for currency</h1>
