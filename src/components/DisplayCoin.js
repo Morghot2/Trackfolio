@@ -1,24 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
-import close from "../close.png"
+import close from "../close.png";
 
-
-const DisplayCoin = ({ coinsList, removeCrypto,calculateTotal }) => {
+const DisplayCoin = ({ coinsList, removeCrypto }) => {
+  let [total, setTotal] = useState(0);
   const [coins, setCoins] = useState({});
   const refs = useRef([]);
-  const onCoinEnter = (event) => {
+  const onValueEnter = (event) => {
+    
     event.preventDefault();
     setCoins(event.target.value);
+    console.log();
   };
+  const calculateTotal = () => {
+   let start = 0;
+    for (let i = 0; i < refs.current.length; i++) {
+      start += parseInt(refs.current[i].innerHTML)
+      setTotal(start)
+      console.log(total);
+      // console.log(typeof parseInt(refs.current[i].innerHTML));
+    }
+  };
+  
+  
 
   return coinsList.map((coin) => {
     return (
       <div key={coin.name}>
-        
         <div className="coin-container">
           <div className="segment">
             {coinsList.indexOf(coin) + 1}.
-            
-            <img src={`${coin.image.thumb}`} alt="symbol" className="coin-icon"></img>
+            <img
+              src={`${coin.image.thumb}`}
+              alt="symbol"
+              className="coin-icon"
+            ></img>
             {coin.name}
           </div>
 
@@ -28,11 +43,11 @@ const DisplayCoin = ({ coinsList, removeCrypto,calculateTotal }) => {
 
           <div className="input-segment">
             <input
-            className="amount-input"
+              className="amount-input"
               type="number"
               name="amount"
-              max="7"
-              onChange={onCoinEnter}
+              
+              onChange={onValueEnter}
               /*value={coinValue}*/ id={coin.name}
             />
           </div>
@@ -58,17 +73,13 @@ const DisplayCoin = ({ coinsList, removeCrypto,calculateTotal }) => {
               }}
               className="delete-button"
             >
-              <img src={close} alt="Delete" className="delete-img"/>
-              
-              
+              <img src={close} alt="Delete" className="delete-img" />
               
             </button>
-            
-            
           </div>
         </div>
+        {/* {total} */}
         
-
       </div>
     );
   });

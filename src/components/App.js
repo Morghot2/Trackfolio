@@ -14,15 +14,15 @@ const App = () => {
     event.preventDefault();
     setCoin(event.target.value);
   };
-  const calculateTotal = () => {
-    let start = 0;
-    for (let i = 0; i < refs.current.length; i++) {
-      start += parseInt(refs.current[i].innerHTML);
-      console.log(start);
-      console.log(typeof parseInt(refs.current[i].innerHTML));
-      console.log(refs);
-    }
-  };
+  // const calculateTotal = () => {
+  //   let start = 0;
+  //   for (let i = 0; i < refs.current.length; i++) {
+  //     start += parseInt(refs.current[i].innerHTML);
+  //     console.log(start);
+  //     console.log(typeof parseInt(refs.current[i].innerHTML));
+  //     console.log(refs);
+  //   }
+  // };
   const fetchCrypto = async () => {
     const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
     try {
@@ -83,12 +83,12 @@ const App = () => {
       <DisplayCoin
         coinsList={coinsList}
         removeCrypto={removeCrypto}
-        calculateTotal={calculateTotal}
+        // calculateTotal={calculateTotal}
         refs={refs}
       />
       <div>
         Your total assets value:
-        <button onClick={calculateTotal()}></button>
+        {/* <button onClick={calculateTotal()}></button> */}
       </div>
     </div>
   );
