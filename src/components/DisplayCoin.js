@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import close from "../close.png";
 
 const DisplayCoin = ({
@@ -6,18 +6,40 @@ const DisplayCoin = ({
   removeCrypto,
   refs,
   calculateTotal,
-  total,
+  coins,
+  setCoins,
+  // total,
+  // coins,
+  // onValueEnter,
 }) => {
-  const [coins, setCoins] = useState({});
+  // const [coins, setCoins] = useState([]);
 
-  const onValueEnter = (event) => {
+  // const onAmountEnter = (event) => {
+  //   event.preventDefault()
+  //   setCoins(event.target.value)
+    
+
+
+
+  // }
+
+  const onValueEnter = (event, coinIndex) => {
     event.preventDefault();
-
-    setCoins(event.target.value);
+    setCoins(event.target.value)
     // calculateTotal()
+    // setCoins(event.target.value)
+    
   };
+  useEffect(() => {
+    calculateTotal()
+
+  }, [coins])
   return coinsList.map((coin) => {
+    // const coinIndex = coinsList.indexOf(coin)
+
+
     return (
+      
       <div key={coin.name}>
         <div className="coin-container">
           <div className="segment">
@@ -40,7 +62,8 @@ const DisplayCoin = ({
               type="number"
               name="amount"
               onChange={onValueEnter}
-              /*value={coinValue}*/ id={coin.name}
+              id={coin.name}
+              // value={coins[coinIndex]}
             />
           </div>
 
@@ -69,6 +92,7 @@ const DisplayCoin = ({
             </button>
           </div>
         </div>
+        
       </div>
     );
   });
