@@ -1,28 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import close from "../close.png";
 
-const DisplayCoin = ({ coinsList, removeCrypto }) => {
-  let [total, setTotal] = useState(0);
+const DisplayCoin = ({
+  coinsList,
+  removeCrypto,
+  refs,
+  calculateTotal,
+  total,
+}) => {
   const [coins, setCoins] = useState({});
-  const refs = useRef([]);
-  const onValueEnter = (event) => {
-    
-    event.preventDefault();
-    setCoins(event.target.value);
-    console.log();
-  };
-  const calculateTotal = () => {
-   let start = 0;
-    for (let i = 0; i < refs.current.length; i++) {
-      start += parseInt(refs.current[i].innerHTML)
-      setTotal(start)
-      console.log(total);
-      // console.log(typeof parseInt(refs.current[i].innerHTML));
-    }
-  };
-  
-  
 
+  const onValueEnter = (event) => {
+    event.preventDefault();
+
+    setCoins(event.target.value);
+    // calculateTotal()
+  };
   return coinsList.map((coin) => {
     return (
       <div key={coin.name}>
@@ -46,7 +39,6 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
               className="amount-input"
               type="number"
               name="amount"
-              
               onChange={onValueEnter}
               /*value={coinValue}*/ id={coin.name}
             />
@@ -74,12 +66,9 @@ const DisplayCoin = ({ coinsList, removeCrypto }) => {
               className="delete-button"
             >
               <img src={close} alt="Delete" className="delete-img" />
-              
             </button>
           </div>
         </div>
-        {/* {total} */}
-        
       </div>
     );
   });

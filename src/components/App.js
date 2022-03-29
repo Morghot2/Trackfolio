@@ -1,11 +1,12 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import DisplayCoin from "./DisplayCoin";
 import "../style.css";
 import search from "../search.png";
 
 const App = () => {
+  // let [total, setTotal] = useState(0);
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
   const [coinsList, setCoinsList] = useState([]);
@@ -15,13 +16,11 @@ const App = () => {
     setCoin(event.target.value);
   };
   // const calculateTotal = () => {
-  //   let start = 0;
+  //   let sum = 0;
   //   for (let i = 0; i < refs.current.length; i++) {
-  //     start += parseInt(refs.current[i].innerHTML);
-  //     console.log(start);
-  //     console.log(typeof parseInt(refs.current[i].innerHTML));
-  //     console.log(refs);
+  //     sum += parseInt(refs.current[i].innerHTML);
   //   }
+  //   setTotal(sum);
   // };
   const fetchCrypto = async () => {
     const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
@@ -47,9 +46,7 @@ const App = () => {
   };
 
   return (
-    
     <div className="coin-app">
-      
       <div className="search-bar">
         <div className="form-wrapper">
           <h1 className="coin-text">Search for currency</h1>
@@ -75,21 +72,20 @@ const App = () => {
       </div>
       <div className="coin-title-container">
         <div className="segment">Name</div>
-        <div className="price-segment">Price</div>
+        <div className="price-segment">Price(USD)</div>
         <div className="input-segment">Amount</div>
-        <div className="value-segment">Asset Value</div>
+        <div className="value-segment">Asset Value(USD)</div>
         <div className="segment-delete-button"></div>
       </div>
       <DisplayCoin
         coinsList={coinsList}
         removeCrypto={removeCrypto}
-        // calculateTotal={calculateTotal}
         refs={refs}
+        // calculateTotal={calculateTotal}
+        // total={total}
       />
-      <div>
-        Your total assets value:
-        {/* <button onClick={calculateTotal()}></button> */}
-      </div>
+      {/* <div>Your total assets value: ${total}</div> */}
+      {/* <button onClick={calculateTotal}>Total</button> */}
     </div>
   );
 };
