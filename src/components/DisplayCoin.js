@@ -8,38 +8,16 @@ const DisplayCoin = ({
   calculateTotal,
   coins,
   setCoins,
-  // total,
-  // coins,
-  // onValueEnter,
 }) => {
-  // const [coins, setCoins] = useState([]);
-
-  // const onAmountEnter = (event) => {
-  //   event.preventDefault()
-  //   setCoins(event.target.value)
-    
-
-
-
-  // }
-
   const onValueEnter = (event, coinIndex) => {
     event.preventDefault();
-    setCoins(event.target.value)
-    // calculateTotal()
-    // setCoins(event.target.value)
-    
+    setCoins(event.target.value);
   };
   useEffect(() => {
-    calculateTotal()
-
-  }, [coins])
+    calculateTotal();
+  }, [coins]);
   return coinsList.map((coin) => {
-    // const coinIndex = coinsList.indexOf(coin)
-
-
     return (
-      
       <div key={coin.name}>
         <div className="coin-container">
           <div className="segment">
@@ -61,9 +39,9 @@ const DisplayCoin = ({
               className="amount-input"
               type="number"
               name="amount"
+              maxLength="5"
               onChange={onValueEnter}
               id={coin.name}
-              // value={coins[coinIndex]}
             />
           </div>
 
@@ -92,7 +70,6 @@ const DisplayCoin = ({
             </button>
           </div>
         </div>
-        
       </div>
     );
   });

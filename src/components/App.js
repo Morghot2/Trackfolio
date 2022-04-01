@@ -7,43 +7,39 @@ import search from "../search.png";
 
 const App = () => {
   let [total, setTotal] = useState(0);
-  // const [coins, setCoins] = useState([]);
+
   const refs = useRef([]);
   const [coin, setCoin] = useState("");
   const [coinsList, setCoinsList] = useState([]);
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [validNumber, setValidNumber] = useState(true);
   const onInputChange = (event) => {
     event.preventDefault();
     setCoin(event.target.value);
   };
-  // const calculateTotal = () => {
-  //   const results = refs.current.filter(element => {
-  //     return element !== null;
-  //   });
-  //   let sum = 0;
-  //   for (let i = 0; i < refs.current.length; i++) {
-  //     refs.current[i].innerHTML !== null ? sum += parseInt(refs.current[i].innerHTML) : console.log('dupa')
-  //   }
-  //   setTotal(sum);
-  // };
 
   const calculateTotal = () => {
-    const results = refs.current.filter(element => {
+    const results = refs.current.filter((element) => {
       return element !== null;
     });
+
     let sum = 0;
+    const char = "e";
+
     for (let i = 0; i < results.length; i++) {
-      sum += parseInt(results[i].innerHTML) 
+      if (results[i].innerHTML.includes(char)) {
+        setValidNumber(false);
+        break;
+      } else {
+        sum += parseInt(results[i].innerHTML);
+        setValidNumber(true);
+      }
     }
+    console.log(validNumber);
+
     setTotal(sum);
   };
-  // calculateTotal()
-  useEffect(() => {})
-
-
-
-
 
   const fetchCrypto = async () => {
     const url = `https://api.coingecko.com/api/v3/coins/${coin.toLowerCase()}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
@@ -56,31 +52,19 @@ const App = () => {
         setCoinsList((coinList) => [...coinList, result.data]);
       }
     } catch (e) {
-      alert("Provide valid coin name");
+      alert(" Please - provide valid coin name");
     } finally {
       setLoading(false);
     }
   };
   const removeCrypto = (coin) => {
     const coinPosition = coinsList.indexOf(coin);
-    setCoins(0)
-    
-    // refs.current.splice(coinsList.indexOf(coin), 1, 'dupa')
+    setCoins(0);
+
     setCoinsList(
       coinsList.filter((element) => coinPosition !== coinsList.indexOf(element))
     );
   };
-  // const onValueEnter = (event, coinIndex) => {
-  //   event.preventDefault();
-  //   // coins.splice(coinsList.indexOf(coin), 1, event.target.value);
-  //   coins.push(event.target.value)
-
-  //   // setCoins(event.target.value)
-    
-  //   // calculateTotal()
-  //   // setCoins(event.target.value)
-    
-  // };
 
   return (
     <div className="coin-app">
@@ -121,13 +105,12 @@ const App = () => {
         calculateTotal={calculateTotal}
         coins={coins}
         setCoins={setCoins}
-        // total={total}
-        // onValueEnter={onValueEnter}
-        // coins={coins}
       />
-      
-      <button onClick={calculateTotal}>Total</button>
-      <div>Your total assets value: ${total}</div>
+
+      <div className="total-value">
+        Your total assets value: $
+        {validNumber === false ? " You are too rich to calculate :)" : total}
+      </div>
     </div>
   );
 };
