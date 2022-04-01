@@ -32,13 +32,10 @@ const App = () => {
         setValidNumber(false);
         break;
       } else {
-        console.log(parseInt(results[i].innerHTML));
         sum += parseFloat(results[i].innerHTML);
         setValidNumber(true);
       }
     }
-    console.log(validNumber);
-
     setTotal(sum);
   };
 
