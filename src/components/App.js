@@ -29,11 +29,10 @@ const App = () => {
 
     for (let i = 0; i < results.length; i++) {
       if (results[i].innerHTML.includes(char)) {
-        
         setValidNumber(false);
         break;
       } else {
-        console.log(parseInt(results[i].innerHTML))
+        console.log(parseInt(results[i].innerHTML));
         sum += parseFloat(results[i].innerHTML);
         setValidNumber(true);
       }
@@ -54,7 +53,11 @@ const App = () => {
         setCoinsList((coinList) => [...coinList, result.data]);
       }
     } catch (e) {
-      alert(" Please - provide valid coin name");
+      if (e.message === "Network Error") {
+        alert("Please - check your internet connection");
+      } else {
+        alert("Please - provide valid coin name");
+      }
     } finally {
       setLoading(false);
     }
