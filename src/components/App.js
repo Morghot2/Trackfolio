@@ -29,10 +29,12 @@ const App = () => {
 
     for (let i = 0; i < results.length; i++) {
       if (results[i].innerHTML.includes(char)) {
+        
         setValidNumber(false);
         break;
       } else {
-        sum += parseInt(results[i].innerHTML);
+        console.log(parseInt(results[i].innerHTML))
+        sum += parseFloat(results[i].innerHTML);
         setValidNumber(true);
       }
     }
