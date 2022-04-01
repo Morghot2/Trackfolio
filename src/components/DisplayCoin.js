@@ -15,7 +15,7 @@ const DisplayCoin = ({
   };
   useEffect(() => {
     calculateTotal();
-  }, [coins]);
+  }, [coins, coinsList]);
   return coinsList.map((coin) => {
     return (
       <div key={coin.name}>
