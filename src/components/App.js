@@ -67,6 +67,7 @@ const App = () => {
       coinsList.filter((element) => coinPosition !== coinsList.indexOf(element))
     );
   };
+  console.log('trying')
 
   return (
     <div className="coin-app">
@@ -98,7 +99,7 @@ const App = () => {
         <div className="price-segment">Price(USD)</div>
         <div className="input-segment">Amount</div>
         <div className="value-segment">Asset Value(USD)</div>
-        <div className="segment-delete-button"></div>
+        <div className="segment-delete-button">Remove</div>
       </div>
       <DisplayCoin
         coinsList={coinsList}
