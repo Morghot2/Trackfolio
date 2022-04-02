@@ -10,6 +10,10 @@ body {
   color: white;
   font-size: 15px;
 }
+#root {
+  max-width: 2000px;
+  margin: auto;
+}
 .search-bar {
   display: flex;
   flex-direction: column;
